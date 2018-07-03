@@ -39,6 +39,21 @@ describe('Express Request', () => {
     });
   });
 
+  describe('Test headers', () => {
+    test('headers should be empty object by default', () => {
+      expect(request.headers).toEqual({});
+    });
+
+    test('body should be an empty object after reset', () => {
+      request.headers['Accept-Language'] = 'en';
+      expect(request.headers['Accept-Language']).toEqual('en');
+
+      request.resetMocked();
+
+      expect(request.headers).toEqual({});
+    });
+  });
+
   describe('Test body', () => {
     test('body should be empty by default', () => {
       expect(request.body).toEqual('');
